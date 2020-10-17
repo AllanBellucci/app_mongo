@@ -1,27 +1,25 @@
-package br.com.application.appdemomongo.domain;
+package br.com.application.appdemomongo.dto;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import br.com.application.appdemomongo.domain.User;
 
-@Document(collection = "user")
-public class User implements Serializable {
+public class UserDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Id
+
 	private String id;
 	private String name;
 	private String email;
 
-	public User() {
+	public UserDTO() {
+
 	}
 
-	public User(String id, String name, String email) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
+	public UserDTO(User user) {
+		id = user.getId();
+		name = user.getName();
+		email = user.getEmail();
 	}
 
 	public String getId() {
@@ -64,7 +62,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		UserDTO other = (UserDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
